@@ -1,0 +1,68 @@
+website:
+  title: "Academic Protfolio"
+  description: "Website for Course work Evaluation"
+
+  navbar:
+    pinned: true
+    left:
+      - icon: github
+        href: https://github.com/sijuswamy/ks_siju_CB.AI.R4CEN24003_Computational-Mathematics-for-DataScience/
+      - text: "Home"
+        href: index.qmd
+      - text: "Assignments"
+        href: assignments.qmd
+      - text: "Previous Assignments"
+        href: assignments_old.qmd
+      - text: "Projects"
+        href: projects.qmd
+      - text: "About"
+        href: about.qmd
+    right:
+      - icon: folder-symlink
+        href: https://github.com/sijuswamy/ks_siju_CB.AI.R4CEN24003_Computational-Mathematics-for-DataScience/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/siju-swamy/
+      - icon: envelope
+        aria-label: email
+        href: "mailto:sijuswamy@gmail.com"  
+  search: 
+    location: navbar
+    type: textbox
+  page-footer: 
+    left: |
+      <span class="faux-block">&#169; 2024 Siju K S CB.AI.R4CEN24003</span>
+    center: |
+      <span class="faux-block"><a href="https://sijuswamyresearch.github.io/24DS-DL/">View Course Page!</a></span>
+    right: |
+      <span class="faux-block"><a href="https://github.com/sijuswamy/">View repositories on GitHub</a></span>
+
+project:
+  type: website
+  output-dir: docs
+
+  preview: 
+    port: 3848
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+execute:
+  freeze: true
+
+format:
+  html:
+    fontsize: 1.1em
+    theme: 
+      - pulse
+      - html/styles.scss
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    toc: true
+    toc-depth: 3
+    #css: styles.css  # Optional: Add custom styling if needed
+    number-sections: true
+    code-fold: true
+ 

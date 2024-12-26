@@ -1,0 +1,61 @@
+---
+title: "Projects"
+---
+
+## Introduction
+
+This section showcases the two major projects completed as part of the *Computational Mathematics for Data Science* course. These projects demonstrate the application of concepts and tools learned during the coursework.
+
+---
+
+## Project I: Benign and Malignant Tissue Classification
+
+### Overview
+
+- **Objective:** Classify benign and malignant tissue using statistical methods and classical machine learning algorithms.
+
+- **Tools:** MATLAB and **CVX solver** for implementing predictive and prescriptive models.
+
+- **Highlights:**
+
+  - A statistical approach for feature selection.
+  - Development of a **predictive model** using supervised learning.
+  - Formulation of a **prescriptive model** using unsupervised learning methods.
+
+<iframe src="assets/pdfs/Project_1_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+Presentation of the project is available at:
+
+<iframe src="assets/pdfs/Project_1_CB.AI.R4CEN24003_Presentation.pdf" width="100%" height="600px"></iframe>
+
+---
+
+## Project II: Applications of Singular Value Decomposition (SVD)
+
+### Overview
+
+- **Objective:** Explore the theoretical and practical utility of SVD in digital image processing.
+
+- **Techniques:** 
+
+  - **Image Compression:** Reducing image size while preserving quality.
+  - **Denoising:** Enhancing image clarity by removing noise.
+  - **Forensic Analysis:** Extracting and analyzing hidden image details.
+- **Reference:** A partial replication of Sadek's work, extending its applications.
+- **Tools:** MATLAB implementations and theoretical discussions.
+
+
+<iframe src="assets/pdfs/Project_2_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+
+Presentation of the project is available at:
+
+<iframe src="assets/pdfs/Project_2_CB.AI.R4CEN24003_Presentation_small.pdf" width="100%" height="600px"></iframe>
+
+:::{.callout-note}
+
+### Digital version
+
+A digital version of this project is available at [Project-2](https://sijuswamy.github.io/SVD_project/)
+
+:::

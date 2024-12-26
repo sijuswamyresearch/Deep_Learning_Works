@@ -1,0 +1,39 @@
+---
+title: "Assignments(DL)"
+---
+
+## Introduction
+
+The assignments documented here reflect a comprehensive study of the concepts and tools taught in the course *Deep Learning*. These include:
+
+### Overview
+
+1. **ANN Architecture**
+
+   - Designing ANN using `Python` OOP concepts
+   - Develop funtions to simulate ANN models with required methods for summarizing parameter details.
+   - Design a user friendly framework for ANN model creation like `Keras`
+
+2. **Popular Activation functions and their properties**
+
+   - Definition and mathematical properties.
+   - Visualization.
+   - Comparitive study in the context of Deep Learning.
+
+2. **Multi Layer Perceptron**
+
+   - MLP for regression task.
+   - MLP for classification task.
+---
+
+For convenience and continuity, each set of assignments is embedded for easy access:
+
+### Assignment 1
+
+This assignment contains.
+
+<iframe src="assets/pdfs/Assignment_Set-1(1-10)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+

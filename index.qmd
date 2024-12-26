@@ -1,0 +1,5 @@
+---
+title: "Academic Portfolio"
+---
+
+Welcome to my academic portfolio! This site is dedicated to showcasing my journey and achievements in the realm of Deep Learning and Artificial Intelligence. Here, you will find a curated collection of my projects, assignments, and course materials that highlight my expertise and passion for this field. Whether you are a fellow researcher, a potential collaborator, or simply interested in my work, I invite you to explore and engage with the content. Thank you for visiting!

@@ -1,0 +1,91 @@
+---
+title: "Assignments(CMD)"
+---
+
+## Introduction
+
+The assignments documented here reflect a comprehensive study of the concepts and tools taught in the course *Computational Mathematics for Data Science*. These include:
+
+### Overview
+
+1. **Linear Algebra Fundamentals:**
+
+   - Matrix operations, four fundamental subspaces, Matrix decompositions- CR, LU, QR, Spectral , SVD and PCA.
+   - Solving systems of linear equations.
+   - Applications in Machine Learning.
+
+2. **Advanced Topics in Optimization:**
+
+   - Convex optimization and its applications.
+   - Lagrange methods for optimization.
+   - Applications in computational data science.
+
+## Structure
+
+Each of the 83 assignments follows a consistent structure:
+
+- **Conceptual Summary:** A concise review of the topic's theoretical framework.
+
+- **Problem Solving:** Mathematical derivations and computational implementation using **MATLAB**.
+
+- **Optimization Techniques:** For relevant topics, problems were solved using the **CVX solver**.
+
+---
+
+For convenience and continuity, each set of assignments is embedded for easy access:
+
+### Assignment Set 1
+
+This set contains assignment 1 to 10.
+
+<iframe src="assets/pdfs/Assignment_Set-1(1-10)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 2
+
+This set contains assignment 11 to 20.
+
+<iframe src="assets/pdfs/Assignment_set2(11-20)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 3
+
+This set contains assignment 21 to 30.
+
+<iframe src="assets/pdfs/Assignment_set3(21-30)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 4
+
+This set contains assignment 31 to 48.
+
+<iframe src="assets/pdfs/Assignment_set4(31-48)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 5
+
+This set contains assignment 49 to 64.
+
+<iframe src="assets/pdfs/Assignment_set5(49-64)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 6
+
+This set contains assignment 65 to 79.
+
+<iframe src="assets/pdfs/Assignment_set6(65-79)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----
+
+### Assignment Set 7
+
+This set contains assignment 80 to 83.
+
+<iframe src="assets/pdfs/Assignment_set7(80-83)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+
+----

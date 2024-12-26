@@ -1,0 +1,29 @@
+---
+title: "About"
+---
+
+## About Me
+
+Welcome to my academic portfolio! I am a  researcher scholar and student specializing in Deep Learning and Artificial Intelligence. This website serves as a comprehensive repository of my projects, assignments, course materials, and other related works from my research coursework.
+
+## Academic Background
+
+I am currently pursuing my P.hD in Artificial Intelligence at Amrita Vishwa Vidyapeetham. My research focuses on Automating Image Denoising Algorithm Parameters. I have a strong foundation in computational mathematics,machine learning, neural networks, and data analysis, which I have applied to various projects and assignments documented here.
+
+## Research Interests
+
+- Deep Learning
+- Artificial Intelligence
+- Neural Networks
+- Machine Learning
+- Data Science
+
+## Projects and Assignments
+
+This portfolio includes detailed documentation of my projects and assignments, showcasing my skills and knowledge in designing and implementing advanced machine learning models.
+
+## Contact
+
+Feel free to reach out to me for any academic or professional inquiries. You can contact me at [your email address] or connect with me on <sijuswamy.research@gmail.com>.
+
+Thank you for visiting my portfolio!
