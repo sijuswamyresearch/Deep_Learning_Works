@@ -1,0 +1,258 @@
+---
+title: "Assignment 1- Foundations of Deep Learning for Visual recognition"
+jupyter: python3
+---
+
+---
+title: "Assignment 1- Foundations of Deep Learning for Visual Recognition"
+jupyter: python3
+---
+
+# Evaluation 1
+
+## Design of a Deep Convolutional Neural Network
+
+>**Problem Statement**
+
+Design the deep convolutional neural network based on user input. Compute the number of learnable parameters in each layer. The design of the architecture and the number of learnable parameters must be printed. Comments are required for the understandability of the logic behind the code. Convolution layer computation can be written as a function file. Direct functions available as built-in library packages must not be used.
+
+
+>**Goal**:
+
+This task is to design a deep convolutional neural network (CNN) from scratch based on user input, compute the number of learnable parameters in each layer, and provide a detailed summary of the network architecture. This task aims to enhance understanding of CNN architecture and parameter computation without relying on built-in library functions.
+
+>**Objectives:**
+
+1. *Design a CNN Architecture*: Create a flexible and user-friendly interface for designing a CNN architecture using an object-oriented programming (OOP) approach, mimicking the Keras Sequential API.
+2. *Compute Learnable Parameters*: Implement functions to compute the number of learnable parameters in each layer of the CNN, including convolutional layers, fully connected layers, dropout layers, flatten layers, and max pooling layers.
+3. *Provide Detailed Summary*: Generate a detailed summary of the CNN architecture, including the number of learnable parameters for each layer and the total number of learnable parameters.
+4. *Ensure Understandability*: Include comprehensive comments and documentation to ensure the code is understandable and maintainable.
+
+>**Deliverables**:
+
+1. *CNNModel Class*: A class representing the entire CNN model, allowing the addition of various layers and providing a summary of the model.
+2. *Layer Classes*: Individual classes for different types of layers, including Conv2D, Dense, Dropout, Flatten, and MaxPooling2D, each with methods to compute the number of learnable parameters.
+3. *User-Friendly API*: An interface that allows users to add layers to the model using a simple and intuitive API, similar to the Keras Sequential API.
+4. *Model Summary*: A function to print a detailed summary of the CNN architecture, including the number of learnable parameters for each layer and the total number of learnable parameters.
+5. *Documentation and Comments*: Comprehensive comments and documentation to explain the logic behind the code and ensure it is understandable and maintainable.
+
+### Model architecture
+
+
+```{mermaid}
+classDiagram
+    class Layer {
+        +input_shape: None
+        +output_shape: None
+        +params: 0
+        +compute_output_shape(input_shape)
+        +compute_params()
+    }
+
+    class Conv2D {
+        +filters: int
+        +kernel_size: tuple
+        +activation: str
+        +strides: tuple
+        +padding: str
+        +bias: bool
+        +compute_output_shape(input_shape)
+        +compute_params()
+    }
+
+    class Dense {
+        +neurons: int
+        +activation: str
+        +bias: bool
+        +compute_output_shape(input_shape)
+        +compute_params()
+    }
+
+    class Dropout {
+        +rate: float
+        +compute_output_shape(input_shape)
+    }
+
+    class Flatten {
+        +compute_output_shape(input_shape)
+    }
+
+    class MaxPooling2D {
+        +pool_size: tuple
+        +strides: tuple
+        +padding: str
+        +compute_output_shape(input_shape)
+    }
+
+    class CNNModel {
+        +layers: list
+        +input_shape: None
+        +add(layer)
+        +summary()
+    }
+
+    Layer <|-- Conv2D
+    Layer <|-- Dense
+    Layer <|-- Dropout
+    Layer <|-- Flatten
+    Layer <|-- MaxPooling2D
+    CNNModel --> Layer
+```
+
+### Model
+
+```{python}
+class Layer:
+    def __init__(self):
+        self.input_shape = None
+        self.output_shape = None
+        self.params = 0
+
+    def compute_output_shape(self, input_shape):
+        raise NotImplementedError
+
+    def compute_params(self):
+        raise NotImplementedError
+
+class Conv2D(Layer):
+    def __init__(self, filters, kernel_size, activation=None, input_shape=None, strides=(1, 1), padding='valid', bias=True):
+        super().__init__()
+        self.filters = filters
+        self.kernel_size = kernel_size
+        self.activation = activation
+        self.strides = strides
+        self.padding = padding
+        self.bias = bias
+        self.input_shape = input_shape
+        if input_shape is not None:
+            self.params = self.compute_params()
+
+    def compute_params(self):
+        input_channels = self.input_shape[-1]
+        params = (input_channels * self.filters * self.kernel_size[0] * self.kernel_size[1])
+        if self.bias:
+            params += self.filters
+        return params
+
+    def compute_output_shape(self, input_shape):
+        if self.padding == 'same':
+            output_height = input_shape[0] // self.strides[0]
+            output_width = input_shape[1] // self.strides[1]
+        else:
+            output_height = (input_shape[0] - self.kernel_size[0]) // self.strides[0] + 1
+            output_width = (input_shape[1] - self.kernel_size[1]) // self.strides[1] + 1
+        return (output_height, output_width, self.filters)
+
+    def __str__(self):
+        return (f"Conv2D Layer: {self.params} parameters, "
+                f"filters: {self.filters}, "
+                f"Kernel Size: {self.kernel_size}, Activation: {self.activation}")
+
+class Dense(Layer):
+    def __init__(self, neurons, activation=None, bias=True):
+        super().__init__()
+        self.neurons = neurons
+        self.activation = activation
+        self.bias = bias
+
+    def compute_params(self):
+        params = self.input_shape * self.neurons + self.neurons
+        return params
+
+    def compute_output_shape(self, input_shape):
+        return (self.neurons,)
+
+    def __str__(self):
+        return (f"Dense Layer: {self.params} parameters, "
+                f"neurons: {self.neurons}, "
+                f"Activation: {self.activation}")
+
+class Dropout(Layer):
+    def __init__(self, rate):
+        super().__init__()
+        self.rate = rate
+
+    def compute_output_shape(self, input_shape):
+        return input_shape
+
+    def __str__(self):
+        return f"Dropout Layer: rate={self.rate}, trainable parameters: 0"
+
+class Flatten(Layer):
+    def __init__(self):
+        super().__init__()
+
+    def compute_output_shape(self, input_shape):
+        return (input_shape[0] * input_shape[1] * input_shape[2],)
+
+    def __str__(self):
+        return "Flatten Layer"
+
+class MaxPooling2D(Layer):
+    def __init__(self, pool_size, strides=None, padding='valid'):
+        super().__init__()
+        self.pool_size = pool_size
+        self.strides = strides if strides else pool_size
+        self.padding = padding
+
+    def compute_output_shape(self, input_shape):
+        if self.padding == 'same':
+            output_height = input_shape[0] // self.strides[0]
+            output_width = input_shape[1] // self.strides[1]
+        else:
+            output_height = (input_shape[0] - self.pool_size[0]) // self.strides[0] + 1
+            output_width = (input_shape[1] - self.pool_size[1]) // self.strides[1] + 1
+        return (output_height, output_width, input_shape[2])
+
+    def __str__(self):
+        return f"MaxPooling2D Layer: pool_size={self.pool_size}, trainable parameters: 0"
+
+class CNNModel:
+    def __init__(self):
+        self.layers = []
+        self.input_shape = None
+
+    def add(self, layer):
+        if not self.layers:
+            if isinstance(layer, Conv2D) and layer.input_shape is not None:
+                layer.output_shape = layer.compute_output_shape(layer.input_shape)
+                layer.params = layer.compute_params()
+            else:
+                raise ValueError("The first layer must be a Conv2D layer with an input shape.")
+        else:
+            layer.input_shape = self.layers[-1].output_shape
+            layer.output_shape = layer.compute_output_shape(layer.input_shape)
+            if isinstance(layer, Conv2D):
+                layer.params = layer.compute_params()
+            elif isinstance(layer, Dense):
+                layer.input_shape = self.layers[-1].output_shape[0]
+                layer.params = layer.compute_params()
+        self.layers.append(layer)
+
+    def summary(self):
+        total_params = 0
+        summary_table = "| Layer (type) | Output Shape | Param # |\n"
+        summary_table += "|--------------|--------------|---------|\n"
+        for i, layer in enumerate(self.layers):
+            summary_table += f"| {layer.__class__.__name__} | {layer.output_shape} | {layer.params} |\n"
+            total_params += layer.params
+        summary_table += f"| **Total** | | **{total_params}** |\n"
+        print(summary_table)
+
+# Create the CNN model
+model = CNNModel()
+
+# Add layers using a simple API
+model.add(Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(64, 64, 3)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Flatten())
+model.add(Dense(neurons=256, activation='relu'))
+model.add(Dense(neurons=10, activation='softmax'))
+
+# Print the model summary
+model.summary()
+```

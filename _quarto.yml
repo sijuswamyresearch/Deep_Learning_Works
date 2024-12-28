@@ -10,7 +10,7 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "Assignments"
-        href: assignments.qmd
+        href: evaluation1.qmd
       - text: "Previous Assignments"
         href: assignments_old.qmd
       - text: "Projects"
@@ -52,6 +52,7 @@ execute:
 format:
   html:
     fontsize: 1.1em
+    embed-resources: true
     theme: 
       - pulse
       - html/styles.scss

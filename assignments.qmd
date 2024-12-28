@@ -32,7 +32,7 @@ For convenience and continuity, each set of assignments is embedded for easy acc
 
 This assignment contains.
 
-<iframe src="assets/pdfs/Assignment_Set-1(1-10)_CB.AI.R4CEN24003.pdf" width="100%" height="600px"></iframe>
+<iframe src="docs/evaluation1.html" width="100%" height="600px"></iframe>
 
 ----
 

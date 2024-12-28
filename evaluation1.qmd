@@ -6,74 +6,7 @@ jupyter: python3
 
 # Evaluation 1
 
-```{.python}
-# loading basic libraries and configuration of environments
-## Import libraries
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-%matplotlib inline
 
-import warnings
-warnings.filterwarnings('ignore') # suppress warning
-sns.set_theme(context='notebook',
-              style='white',
-              palette='deep',
-              font='monospace',
-              font_scale=0.7,
-              color_codes=True,
-              rc=None)
-import matplotlib
-
-plt.rcParams['figure.figsize'] = (4,3)
-plt.rcParams['figure.facecolor'] = '#F0F8FF'
-plt.rcParams['figure.titlesize'] = 'medium'
-plt.rcParams['figure.dpi'] = 150
-plt.rcParams['figure.edgecolor'] = 'green'
-plt.rcParams['figure.frameon'] = True
-
-plt.rcParams["figure.autolayout"] = True
-
-plt.rcParams['axes.facecolor'] = '#F5F5DC'
-plt.rcParams['axes.titlesize'] = 10
-plt.rcParams["axes.titleweight"] = 'normal'
-plt.rcParams["axes.titlecolor"] = 'Olive'
-plt.rcParams['axes.edgecolor'] = 'pink'
-plt.rcParams["axes.linewidth"] = 2
-plt.rcParams["axes.grid"] = True
-plt.rcParams['axes.titlelocation'] = 'center'
-plt.rcParams["axes.labelsize"] = 9
-plt.rcParams["axes.labelpad"] = 2
-plt.rcParams['axes.labelweight'] = 1
-plt.rcParams["axes.labelcolor"] = 'Olive'
-plt.rcParams["axes.axisbelow"] = False
-plt.rcParams['axes.xmargin'] = .2
-plt.rcParams["axes.ymargin"] = .2
-
-plt.rcParams["xtick.bottom"] = True
-plt.rcParams['xtick.color'] = '#A52A2A'
-plt.rcParams["ytick.left"] = True
-plt.rcParams['ytick.color'] = '#A52A2A'
-plt.rcParams['axes.grid'] = True
-plt.rcParams['grid.color'] = 'green'
-plt.rcParams['grid.linestyle'] = '--'
-plt.rcParams['grid.linewidth'] = .5
-plt.rcParams['grid.alpha'] = .3
-
-plt.rcParams['legend.loc'] = 'best'
-plt.rcParams['legend.facecolor'] =  'NavajoWhite'
-plt.rcParams['legend.edgecolor'] = 'pink'
-plt.rcParams['legend.shadow'] = True
-plt.rcParams['legend.fontsize'] = 9
-
-
-plt.rcParams['font.family'] = 'monospace'
-plt.rcParams['font.size'] = 9
-plt.rcParams['figure.dpi'] = 150
-plt.rcParams['figure.edgecolor'] = 'Blue'
-
-```
 ```{python}
 import pandas as pd
 import numpy as np
@@ -605,7 +538,7 @@ plt.grid(True)
 plt.show()
 ```
 
->3. *Leaky ReLu*
+>4. *Leaky ReLu*
 
 The name *Leaky ReLU* derives from the function's behavior, which is a variant of the *Rectified Linear Unit (ReLU)* activation function. Unlike ReLU, which sets all negative inputs to $0$, Leaky ReLU introduces a *small, non-zero gradient* ($\alpha$) for negative inputs.This allows some information to "leak" through even when the input is negative.
 
@@ -645,7 +578,7 @@ plt.grid(True)
 plt.show()
 ```
 
->4. *ELU (Exponential Linear Unit)* Activation Function
+>5. *ELU (Exponential Linear Unit)* Activation Function
 
 The name *ELU* reflects the combination of its two defining characteristics: *Exponential* behavior for negative inputs and a *Linear Unit* for positive inputs.
 $$
@@ -679,7 +612,7 @@ plt.grid(True)
 plt.show()
 ```
 
->5. *$\tanh(x)$ activation function*
+>6. *$\tanh(x)$ activation function*
 
 The name *Tanh* comes from the *Hyperbolic Tangent* function, which is defined mathematically as:
 
@@ -811,6 +744,19 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 ```
+
+
+## Comparison of Activation Functions
+
+| Activation Function | Properties | Strengths | Weaknesses |
+|---------------------|------------|-----------|------------|
+| **Sigmoid**         | S-shaped curve, outputs range (0, 1) | Smooth gradient, outputs can be interpreted as probabilities | Vanishing gradient problem, slow convergence |
+| **Softmax**         | Generalization of sigmoid, outputs sum to 1 | Useful for multi-class classification, outputs probabilities | Computationally expensive, can be sensitive to outliers |
+| **ReLU (Rectified Linear Unit)** | Outputs zero for negative inputs, linear for positive inputs | Computationally efficient, mitigates vanishing gradient problem | Can suffer from "dying ReLU" problem where neurons become inactive |
+| **Leaky ReLU**      | Similar to ReLU, but allows a small gradient for negative inputs | Prevents "dying ReLU" problem, retains benefits of ReLU | Introduces a small bias in the model |
+| **Exponential ReLU (ELU)** | Similar to ReLU, but smooths the curve for negative inputs | Reduces bias shift, faster learning | Computationally more expensive, can still suffer from vanishing gradient |
+| **Tanh**            | S-shaped curve, outputs range (-1, 1) | Zero-centered outputs, stronger gradients than sigmoid | Vanishing gradient problem, slower convergence compared to ReLU |
+
 
 ---- 
 
@@ -1593,7 +1539,71 @@ Improving the dataset balance, refining the model, or employing techniques like 
 
 ----
 
+>**Hyperparameter Tuning for MLP Classification**
+
+In this section, we will perform hyperparameter tuning on our Multi-Layer Perceptron (MLP) model for classification tasks. The goal is to optimize the model's performance by systematically varying key hyperparameters, including the optimizer type, the number of neurons in hidden layers, the number of hidden layers, and the learning rate used in the optimization algorithm. By exploring different combinations of these hyperparameters, we aim to identify the configuration that yields the best classification accuracy and generalization capability on our dataset.
+
+>*Using different optimizers during minimization of the MSE loss function*
+
+ In the initial stage, various optimizers were applied to the same network architecture. The performance metrics for the model with different optimizers are presented below.
+ 
+
+| Sl.No | Optimizer | Hidden Layers (L1, L2) | Accuracy | Precision | Recall | F1-score | Status           |
+|-------|-----------|------------------------|----------|-----------|--------|----------|------------------|
+| 1     | Adam      | 20, 10                 | 0.62     | 0.61      | 0.62   | 0.554    | Relatively Stable|
+| 2     | SGD       | 20, 10                 | 0.61     | 0.60      | 0.61   | 0.570    | Less Stable      |
+| 3     | Rmsprop   | 20, 10                 | 0.61     | 0.617     | 0.616  | 0.573    | Unstable         |
+| 4     | Adadelta  | 20, 10                 | 0.44     | 0.216     | 0.442  | 0.29     | Highly Unstable  |
+| 5     | Adagrad   | 20, 10                 | 0.61     | 0.62      | 0.61   | 0.55     | Unstable         |
+
+From the performance metrics, the MLP model with `Adam` optimizer is found to a better performer. For the next stage we fix `Adam` as the optimizer.
+
+>*Changing number of neurons in hidden layers*
+
+In the next stage, we will vary the number of neurons in the hidden layers while keeping other hyperparameters constant. The performance metrics for the model with different configurations of neurons in the hidden layers will be analyzed to determine the optimal structure for our classification task.
+
+| Sl.No | Hidden Layers (L1, L2) | Accuracy | Precision | Recall | F1-score | Status           |
+|-------|------------------------|----------|-----------|--------|----------|------------------|
+| 1     | 30, 10                 | 0.60     | 0.605     | 0.69   | 0.558    | Less Stable      |
+| 2     | 15, 10                 | 0.61     | 0.644     | 0.644  | 0.605    | Less Stable      |
+| 3     | 20, 20                 | 0.621    | 0.621     | 0.614  | 0.605    | Relatively stable|
+| 4     | 20, 30                 | 0.61     | 0.590     | 0.610  | 0.599    | Highly Unstable  |
+
+From the performance matric, it is clear that MLP classifier with `Adam` optimizer and hidden layer size (20,20) is relatively a better one in the classification task. In the next stage let's fix the optimizer but add one more hidden layer.
+
+>*Adding More Hidden Layers*
+
+In this stage of hyperparameter tuning, we will explore the impact of adding an additional hidden layer to our deep neural network (DNN) architecture. The objective is to determine how the inclusion of an extra hidden layer affects the model's performance metrics. By systematically varying the number of hidden layers, we aim to identify the optimal network depth that enhances the model's ability to learn complex patterns in the data while maintaining stability and generalization capability. The results of this experiment will provide insights into the trade-offs between model complexity and performance.
+
+| Sl.No | Hidden Layers (L1, L2,L3) | Accuracy | Precision | Recall | F1-score | Status           |
+|-------|---------------------------|----------|-----------|--------|----------|------------------|
+| 1     | 20, 20 ,10                | 0.623    | 0.611     | 0.623  | 0.609    | More Stable      |
+| 2     | 30, 20 ,10                | 0.616    | 0.611     | 0.611  | 0.612    | Less Stable      |
+| 3     | 20, 20 ,20                | 0.621    | 0.621     | 0.614  | 0.605    | Less stable      |
+| 4     | 20, 30 ,20                | 0.618    | 0.607     | 0.618  | 0.595    | Highly Unstable  |
+
+From, the table it is clear that MLP model with `Adam` optimizer, (20,20,10) hidden layer pattern is a relatively better stable classifier in this context.
+
+>*Fine Turning the Larning Rate*
+
+The default learning rate for the `Adam` optimizer is set to 0.001. In this section, we will experiment with different learning rates to evaluate the performance metrics of the model. Specifically, we will test the model with learning rates of $\eta = 0.001$, $\eta = 0.01$, and $\eta = 0.1$. Our findings indicate that increasing the learning rate beyond these values results in greater instability, as evidenced by higher variance across different iterations.
+
+| Sl.No | Layers (L1, L2, L3)  | Learning Rate($\eta$) | Accuracy | Precision | Recall | F1-score | Status           |
+|-------|----------------------|-----------------------|----------|-----------|--------|----------|------------------|
+| 1     | 20, 20, 10           | 0.001                 |0.620     | 0.618     | 0.620  |  0.607   |    More Stable   |
+| 2     | 20, 20, 10           | 0.010                 |0.623     | 0.615     | 0.623  |  0.616   |         Stable   |
+| 3     | 20, 20, 10           | 0.100                 |0.609     | 0.488     | 0.609  |  0.534   |    Less Stable   |
+
+
+>*Interpretation and Conclusion*
+
+In the context of this study, feature preprocessing is crucial to ensure both the ethical collection of data and the accuracy of the model. According to information from the UCI data repository, many features were derived from the killing of Abalones. To promote sustainability and avoid further harm to the Abalone population, our aim is to select only linearly independent features that can produce maximum accuracy without necessitating additional data collection through harmful means.
+
+Furthermore, a careful analysis of the data reveals no significant relationship between the feature values and the age of abalones. Therefore, instead of designing a model with age or the number of rings as the target variable, we categorize Abalones into three classes: infant, young, and adult (represented as Class 1, Class 2, and Class 3, respectively). This approach  simplifies the classification task, making it more practical and ethically responsible. By focusing on these categories, we aim to develop a robust model that can accurately classify the samples while adhering to ethical standards and promoting the conservation of the species.
+
+The results indicate that the MLP classifier's performance on the Abalone dataset varies with different learning rates. With a learning rate of 0.001, the model achieves an accuracy of 0.620, precision of 0.618, recall of 0.620, and an F1-score of 0.607, and is considered more stable. Increasing the learning rate to 0.010 slightly improves the accuracy to 0.623, with a precision of 0.615, recall of 0.623, and an F1-score of 0.616, maintaining stability. However, further increasing the learning rate to 0.100 results in a decrease in performance, with an accuracy of 0.609, precision of 0.488, recall of 0.609, and an F1-score of 0.534, indicating less stability.
 
 
 
+In conclusion, the MLP classifier with the Adam optimizer performs best (on an average) with a learning rate of 0.010, achieving the highest accuracy and maintaining stability. The results suggest that while the model is relatively stable with lower learning rates, higher learning rates lead to decreased performance and stability. Therefore, careful tuning of the learning rate is crucial for optimizing the performance of the MLP classifier on the Abalone dataset.
 
